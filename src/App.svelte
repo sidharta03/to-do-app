@@ -1,8 +1,11 @@
 <script>
 	import TodoCard from "./ToDoCard.svelte";
-	let toDo = ["Pelatihan", "Kunjungan"];
-	let inProgress = ["Pelatihan"];
-	let done = ["Rapat Bulanan"];
+	let tasks =
+	[
+		{ task: "Rapat Bulanan", list: "todo" },
+		{ task: "Gotong Royong", list: "in-progress" },
+		{ task: "Pelatihan", list: "done" },
+	];
 </script>
 
 <div class="container is-fluid">
@@ -16,8 +19,10 @@
 					<div class="card-header-title">Rencana kegiatan</div>
 				</div>
 				<div class="card-content">
-					{#each toDo as toDo}
-						<TodoCard content={toDo} />
+					{#each tasks as task}
+					{#if (task.list=="todo")
+						<TodoCard content={task.task} />
+					{/if}
 					{/each}
 					<input type="text" class="input is-primary mb-1" />
 					<button class="button is-primary">Tambah Kegiatan</button>
@@ -32,8 +37,10 @@
 					</div>
 				</div>
 				<div class="card-content">
-					{#each inProgress as inProgress}
-						<TodoCard content={inProgress} />
+					{#each tasks as task}
+					{#if (task.list=="in-progress")
+						<TodoCard content={task.task} />
+					{/if}
 					{/each}
 				</div>
 			</div>
@@ -44,8 +51,10 @@
 					<div class="card-header-title">Kegiatan telah selesai</div>
 				</div>
 				<div class="card-content">
-					{#each done as done}
-						<TodoCard content={done} />
+					{#each tasks as task}
+					{#if (task.list=="done")
+						<TodoCard content={task.task} />
+					{/if}
 					{/each}
 				</div>
 			</div>
